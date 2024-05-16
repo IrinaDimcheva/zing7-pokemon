@@ -20,7 +20,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   const allPages = generatePagination(totalPages);
 
   return (
-    <div className="flex flex-wrap justify-center py-12">
+    <div className="flex flex-wrap justify-center py-24">
       {currentPage <= 1 ? (
         <div className="flex h-10 w-10 items-center justify-center border pointer-events-none text-gray-300">
           <ArrowLeftIcon className="w-4" />

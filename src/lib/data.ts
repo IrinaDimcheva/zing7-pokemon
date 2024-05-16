@@ -7,13 +7,32 @@ export async function fetchPokemonData(currentPage: number, query?: string) {
     `${API_URL}/pokemon?offset=${offset}&limit=${LIMIT}`
   );
   const data = await response.json();
-  // const { count, next, previous, results } = data;
+  const { count, next, previous, results } = data;
+  return results;
+}
+
+export async function fetchPokemonDetails(url: string) {
+  const response = await fetch(url);
+  const data = await response.json();
   return data;
+}
+
+export async function fetchByType(type: string, query: string) {
+  const response = await fetch(`${API_URL}/type/${type}`);
+  const data = await response.json();
+  return data.pokemon;
 }
 
 export async function fetchPokemonPages(query: string) {
   const response = await fetch(`${API_URL}/pokemon?query=${query}`);
   const data = await response.json();
   const totalPages = Math.ceil(data.count / LIMIT);
+  return totalPages;
+}
+
+export async function fetchPokemonTypePages(type: string, query: string) {
+  const response = await fetch(`${API_URL}/type/${type}`);
+  const data = await response.json();
+  const totalPages = Math.ceil(data.pokemon.length / LIMIT);
   return totalPages;
 }
