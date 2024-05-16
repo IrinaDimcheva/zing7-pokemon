@@ -72,7 +72,7 @@ export default async function PokemonList({
               className="p-10 rounded-lg  bg-lime-50 hover:bg-lime-100"
             >
               <Link
-                href={`/${pokemonDetails.id}`}
+                href={`/pokemon/${pokemonDetails.id}`}
                 className="flex flex-col justify-center items-center"
               >
                 <h3 className="text-2xl font-bold">{pokemon.pokemon.name}</h3>

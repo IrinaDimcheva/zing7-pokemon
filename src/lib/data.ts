@@ -17,6 +17,12 @@ export async function fetchPokemonDetails(url: string) {
   return data;
 }
 
+export async function fetchPokemon(id: string) {
+  const response = await fetch(`${API_URL}/pokemon/${id}`);
+  const data = await response.json();
+  return data;
+}
+
 export async function fetchByType(type: string, query: string) {
   const response = await fetch(`${API_URL}/type/${type}`);
   const data = await response.json();

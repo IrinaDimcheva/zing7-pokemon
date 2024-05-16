@@ -29,7 +29,12 @@ namespace PokemonAPI {
     id: number;
     is_default: boolean;
     location_area_encounters: string;
-    moves: [];
+    moves: {
+      move: {
+        name: string;
+        url: string;
+      };
+    }[];
     name: string;
     order: number;
     past_abilities: [];

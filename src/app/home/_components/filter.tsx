@@ -206,9 +206,10 @@ export default function Filter() {
 
   function handleFilter(type: string) {
     const params = new URLSearchParams(searchParams);
-    params.set('page', '1');
+    // params.set('page', '1');
     if (type) {
       params.set('type', type);
+      params.delete('page');
     } else {
       params.delete('type');
     }
