@@ -1,8 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { fetchByType, fetchPokemonData, fetchPokemonDetails } from '@/lib/data';
+import {
+  fetchByType,
+  fetchPokemonData,
+  fetchPokemonDetails,
+  fetchAllPokemonCollection,
+} from '@/lib/data';
 
-type PokemonCard = {
+export type PokemonCard = {
   name: string;
   url: string;
 };
@@ -22,15 +27,21 @@ export default async function PokemonList({
   query: string;
   type: string;
 }) {
-  const results =
-    type === ''
-      ? await fetchPokemonData(currentPage, query)
-      : await fetchByType(type, query);
+  const allResults = await fetchAllPokemonCollection();
+  const filteredData = await allResults?.filter((pokemon: PokemonCard) =>
+    pokemon.name.toLowerCase().includes(query.toLowerCase())
+  );
+
+  const results = query
+    ? filteredData
+    : type === ''
+    ? await fetchPokemonData(currentPage)
+    : await fetchByType(type);
 
   return (
     <ul className="grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mx-auto">
       {!type &&
-        results.map(async (pokemon: PokemonCard) => {
+        results?.map(async (pokemon: PokemonCard) => {
           const pokemonDetails = (await fetchPokemonDetails(
             pokemon.url
           )) as PokemonAPI.Pokemon;
@@ -40,7 +51,7 @@ export default async function PokemonList({
               className="p-10 rounded-lg  bg-lime-50 hover:bg-lime-100"
             >
               <Link
-                href={`/${pokemonDetails.id}`}
+                href={`/${pokemonDetails.name}`}
                 className="flex flex-col justify-center items-center"
               >
                 <h3 className="text-2xl font-bold">{pokemon.name}</h3>
@@ -62,7 +73,7 @@ export default async function PokemonList({
           );
         })}
       {type &&
-        results.map(async (pokemon: PokemonCardFromType) => {
+        results?.map(async (pokemon: PokemonCardFromType) => {
           const pokemonDetails = (await fetchPokemonDetails(
             pokemon.pokemon.url
           )) as PokemonAPI.Pokemon;
@@ -72,7 +83,7 @@ export default async function PokemonList({
               className="p-10 rounded-lg  bg-lime-50 hover:bg-lime-100"
             >
               <Link
-                href={`/pokemon/${pokemonDetails.id}`}
+                href={`/${pokemonDetails.name}`}
                 className="flex flex-col justify-center items-center"
               >
                 <h3 className="text-2xl font-bold">{pokemon.pokemon.name}</h3>

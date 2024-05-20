@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import { fetchPokemon } from '@/lib/data';
 
-export default async function Page({ params }: { params: { id: string } }) {
-  const pokemon = (await fetchPokemon(params.id)) as PokemonAPI.Pokemon;
+export default async function Page({ params }: { params: { name: string } }) {
+  const pokemon = (await fetchPokemon(params.name)) as PokemonAPI.Pokemon;
 
   return (
     <section className="max-w-[1140px] mx-auto p-8 py-24">
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-4xl font-bold">{pokemon.name}</h1>
-        <div className="w-[200px] h-[200px]">
+        <div className="w-[300px] h-[300px]">
           <Image
             src={pokemon.sprites?.front_default}
             alt={pokemon.name}
-            width={200}
-            height={200}
+            width={300}
+            height={300}
           />
         </div>
         <section>
