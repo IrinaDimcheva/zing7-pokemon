@@ -113,7 +113,7 @@ export default function Filter() {
       <div className="border border-lime-300 rounded-lg p-4">
         <select
           className="outline-none cursor-pointer"
-          defaultValue={searchParams.get('type')?.toString() || ''}
+          defaultValue={searchParams.get('type')?.toString()}
           onChange={(e) => handleFilter(e.target.value)}
         >
           <option value="">Choose type</option>

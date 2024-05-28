@@ -27,7 +27,7 @@ export default function Search() {
         placeholder="Search by name..."
         className="block w-full rounded-lg border border-lime-300 outline-lime-300 p-4 outline-2"
         onChange={(e) => handleSearch(e.target.value.toLowerCase())}
-        defaultValue={searchParams.get('query')?.toString() || ''}
+        defaultValue={searchParams.get('query')?.toString()}
       />
     </div>
   );

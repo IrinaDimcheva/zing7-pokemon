@@ -13,9 +13,9 @@ export async function fetchPokemonData(currentPage: number) {
   return data.results;
 }
 
-export const preload = () => {
-  void fetchAllPokemonCollection();
-};
+// export const preload = () => {
+//   void fetchAllPokemonCollection();
+// };
 
 export const fetchAllPokemonCollection = cache(async () => {
   const response = await fetch(`${API_URL}/pokemon?limit=100000`);
