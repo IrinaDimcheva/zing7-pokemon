@@ -1,11 +1,15 @@
 import Image from 'next/image';
 import { fetchPokemon } from '@/lib/data';
+import BackButton from '@/components/ui/back-button';
 
 export default async function Page({ params }: { params: { name: string } }) {
   const pokemon = (await fetchPokemon(params.name)) as PokemonAPI.Pokemon;
 
   return (
     <section className="max-w-[1140px] mx-auto p-8 py-24">
+      <div className="mb-8">
+        <BackButton />
+      </div>
       <div className="flex flex-col justify-center items-center">
         <h1 className="text-4xl font-bold">{pokemon.name}</h1>
         <div className="w-[300px] h-[300px]">
@@ -59,6 +63,9 @@ export default async function Page({ params }: { params: { name: string } }) {
           </ul>
           <p>weight: {pokemon.weight}</p>
         </section>
+      </div>
+      <div className="flex justify-end mt-16">
+        <BackButton />
       </div>
     </section>
   );
