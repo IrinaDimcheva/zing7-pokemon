@@ -4,6 +4,7 @@ import Pagination from './home/_components/pagination';
 import Filter from './home/_components/filter';
 import Search from './home/_components/search';
 import { Suspense } from 'react';
+import { ListSkeleton } from '@/components/ui/skeletons';
 
 export default async function Home({
   searchParams,
@@ -26,7 +27,7 @@ export default async function Home({
         <Filter />
       </section>
       <section>
-        <Suspense fallback={<div className="h-[1500px]">Loading...</div>}>
+        <Suspense fallback={<ListSkeleton />}>
           <PokemonList query={query} type={type} currentPage={currentPage} />
         </Suspense>
         {totalPages && <Pagination totalPages={totalPages} />}
