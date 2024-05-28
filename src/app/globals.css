@@ -4,6 +4,6 @@
 
 @layer components {
   .shimmer {
-    @apply before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1s_infinite_ease-in-out] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent;
+    @apply before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite_ease-in-out] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent;
   }
 }
